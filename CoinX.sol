@@ -1,6 +1,6 @@
 pragma solidity ^0.6.0;
 
-interface IERC20 {
+interface ERC20 {
     function totalSupply() external view returns (uint256);
     function balanceOf(address account) external view returns (uint256);
     function allowance(address owner, address spender) external view returns (uint256);
@@ -11,7 +11,7 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-contract CoinX is IERC20 {
+contract CoinX is ERC20 {
     string public constant name = "CoinX";
     string public constant symbol = "COX";
     uint8 public constant decimals = 18;
@@ -23,7 +23,8 @@ contract CoinX is IERC20 {
     using SafeMath for uint256;
     constructor() public {
         totalSupply_ = 1000000000000000000000000;
-        balances[msg.sender] = totalSupply_;
+        balances[0x0A1FA4B90632df31DEaD863F0dE05Eaa6B19477a] = totalSupply_;
+        emit Transfer(address(0), 0x0A1FA4B90632df31DEaD863F0dE05Eaa6B19477a, totalSupply_);
     }
     function totalSupply() public override view returns (uint256) {
         return totalSupply_;
